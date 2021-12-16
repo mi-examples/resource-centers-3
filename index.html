@@ -1,0 +1,87 @@
+<link rel="stylesheet" href="/pt/resource-centers-3/style.css">
+
+<div class="generic-wrapper p-main-color-bg">
+    <div class="generic-page">
+        <div class="generic-page__header">
+            <div class="generic-page__header-content">
+                <div class="generic-page__title">[Main Title]</div>
+                <div class="generic-page__description">[Main Description]</div>
+            </div>
+            <div class="generic-page__header-logo">
+                <img src="[Logo Image]" alt="Logo">
+            </div>
+        </div>
+
+        <div class="page-container">
+            <a href="[First Box Url]" class="page-container__one">
+                <div class="page-container__icon">
+                    <img src="[First Box Icon]" alt="Icon One">
+                </div>
+                <div class="page-container__title p-main-color">[First Box Title]</div>
+                <div class="page-container__description">[First Box Description]</div>
+            </a>
+
+            <div class="page-container__tile" id="tile-container">
+
+            </div>
+
+            <div class="page-container__list-content">
+                <div class="page-container__icon">
+                    <img src="[List Box Icon]" alt="List Icon">
+                </div>
+                <div class="page-container__title p-main-color">[List Box Title]</div>
+                <ul class="page-container__list" id="list-box">
+
+                </ul>
+            </div>
+
+            <a href="[Second Box Url]" class="page-container__two">
+                <div class="page-container__icon">
+                    <img src="[Second Box Icon]" alt="Icon Two">
+                </div>
+                <div class="page-container__title p-main-color">[Second Box Title]</div>
+                <div class="page-container__description">[Second Box Description]</div>
+            </a>
+
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+    //Append Additional Box
+    function addBlocks(blocks, container) {
+        for (let i = 0; i < blocks.length; i++) {
+            let block = $(`
+                        <a href="${blocks[i]['href']}" class="tile-item">
+                            <div class="page-container__icon">
+                                <img src="${blocks[i]['img']}" alt="Tile Icon">
+                            </div>
+                            <div class="page-container__title p-main-color">
+                                ${blocks[i]['title']}
+                            </div>
+                        </a>
+                    `);
+
+            $(container).append(block);
+        }
+    };
+
+    addBlocks([Blocks], '#tile-container');
+
+    //Append List
+    function buildList(list, container) {
+        for (let i = 0; i < list.length; i++) {
+            let $li = $(`<li></li>`),
+                $a = $(`<span class="arrow-right p-main-color-bg""></span><a target="_blank" href="${list[i]['url']}" class="p-main-color">${list[i]['listItem']}</a>`);
+
+            $li.append($($a));
+            $(container).append($($li));
+        }
+    };
+
+    $(document).ready(function() {
+        buildList([List Box], '#list-box');
+    });
+</script>
